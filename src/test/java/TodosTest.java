@@ -28,13 +28,13 @@ public class TodosTest {
 
         // Тестирование поиска по подзадачам Epic
         Task[] expected1 = {epic};
-        Task[] actual2 = todos.search("tests");
-        Assertions.assertArrayEquals(expected1, actual2);
+        Task[] actual1 = todos.search("tests");
+        Assertions.assertArrayEquals(expected1, actual1);
 
         // Тестирование поиска по теме встречи
-        Task[] expected3 = {meeting};
-        Task[] actual3 = todos.search("kickoff");
-        Assertions.assertArrayEquals(expected3, actual3);
+        Task[] expected2 = {meeting};
+        Task[] actual2 = todos.search("kickoff");
+        Assertions.assertArrayEquals(expected2, actual2);
     }
 
     @Test
@@ -85,8 +85,8 @@ public class TodosTest {
         Task[] result = todos.search("Task");
 
         // Assert
-        Assert.assertEquals(1, result.length);
-        Assert.assertEquals(task, result[0]);
+        Task[] expected = {task};
+        Assert.assertArrayEquals(expected, result);
     }
 
     @Test
@@ -100,8 +100,8 @@ public class TodosTest {
         Task[] result = todos.search("Subtask");
 
         // Assert
-        Assert.assertEquals(1, result.length);
-        Assert.assertEquals(epic, result[0]);
+        Task[] expected = {epic};
+        Assert.assertArrayEquals(expected, result);
     }
 
     @Test
@@ -115,8 +115,8 @@ public class TodosTest {
         Task[] result = todos.search("Project");
 
         // Assert
-        Assertions.assertEquals(1, result.length);
-        Assertions.assertEquals(meeting, result[0]);
+        Meeting[] expected = { meeting };
+        Assert.assertArrayEquals(expected, result);
     }
 
     @Test
@@ -130,6 +130,7 @@ public class TodosTest {
         Task[] result = todos.search("Meeting");
 
         // Assert
-        Assertions.assertEquals(0, result.length);
+        Task[] expected = new Task[0];
+        Assert.assertArrayEquals(expected, result);
     }
 }
