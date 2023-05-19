@@ -115,8 +115,8 @@ public class TodosTest {
         Task[] result = todos.search("Project");
 
         // Assert
-        Assert.assertEquals(1, result.length);
-        Assert.assertEquals(meeting, result[0]);
+        Assertions.assertEquals(1, result.length);
+        Assertions.assertEquals(meeting, result[0]);
     }
 
     @Test
@@ -130,6 +130,6 @@ public class TodosTest {
         Task[] result = todos.search("Meeting");
 
         // Assert
-        Assert.assertEquals(0, result.length);
+        Assertions.assertEquals(0, result.length);
     }
 }
