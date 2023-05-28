@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.netology.Epic;
@@ -6,6 +7,8 @@ import ru.netology.Meeting;
 import ru.netology.SimpleTask;
 import ru.netology.Task;
 import ru.netology.Todos;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -132,5 +135,56 @@ public class TodosTest {
         // Assert
         Task[] expected = new Task[0];
         Assert.assertArrayEquals(expected, result);
+    }
+
+    @Test
+    public void testSearchMultipleTasksFound() {
+        Todos todos = new Todos();
+
+        Task task1 = new SimpleTask(1, "Buy groceries");
+        Task task2 = new SimpleTask(2, "Clean the house");
+        Task task3 = new SimpleTask(3, "Walk the dog");
+
+        todos.add(task1);
+        todos.add(task2);
+        todos.add(task3);
+
+        Task[] result = todos.search("the");
+
+        assertArrayEquals(new Task[] { task2, task3 }, result);
+    }
+
+    @Test
+    public void testSearchOneTaskFound() {
+        Todos todos = new Todos();
+
+        Task task1 = new SimpleTask(1, "Buy groceries");
+        Task task2 = new SimpleTask(2, "Clean the house");
+        Task task3 = new SimpleTask(3, "Walk the dog");
+
+        todos.add(task1);
+        todos.add(task2);
+        todos.add(task3);
+
+        Task[] result = todos.search("dog");
+
+        assertArrayEquals(new Task[] { task3 }, result);
+    }
+
+    @Test
+    public void testSearchNoTasksFound() {
+        Todos todos = new Todos();
+
+        Task task1 = new SimpleTask(1, "Buy groceries");
+        Task task2 = new SimpleTask(2, "Clean the house");
+        Task task3 = new SimpleTask(3, "Walk the dog");
+
+        todos.add(task1);
+        todos.add(task2);
+        todos.add(task3);
+
+        Task[] result = todos.search("work");
+
+        assertArrayEquals(new Task[0], result);
     }
 }
